@@ -1,2 +1,2 @@
 # Quiz_App
-Enable users to practice for <b>subjective</b> tests conducted for admissions and recruitment.
+Enable users to practice for <b>subjective</b> tests conducted for <b>admissions</b>  and <b> recruitment</b> .
