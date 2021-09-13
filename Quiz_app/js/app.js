@@ -15,11 +15,22 @@ function setAvailableQuestions(){
     for(let i=0; i < totalQuestion; i++){
         availableQuestions.push(quiz[i]);
     }
-    console.log(availableQuestions)
+}
+// Set question number and question options
+function getNewQuestion(){
+    // Set question number 
+    questionNumber.innerHTML = "Question " + (questionCounter + 1) + " of "+ quiz.length;
+    // Set  question options
+    // Get Random question
+    const questionIndex = availableQuestions[Math.floor(Math.random() * availableQuestions.length)]
+    
 }
 
 window.onload = function(){
-    setAvailableQuestions()
+    // First we will set all questions in setAvailableQuestions array
+    setAvailableQuestions();
+    // Second we will call getNewQuestion() function
+    getNewQuestion();
 }
 
 // console.log(quiz[4])
