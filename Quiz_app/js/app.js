@@ -7,7 +7,7 @@ const questionNumber = document.querySelector(".question-number"),
 
 let questionCounter = 0,
     currentQuestion,
-    availableQuestions = [];
+    availableQuestions = [],
     availableOptions = [];
 
     // Push the question into availableQuestions array
@@ -36,9 +36,24 @@ function getNewQuestion(){
     // get the length of options
     const optionLen = currentQuestion.options.length
     for(let i = 0; i<optionLen; i++){
-        availableQuestions.push(i);
+        availableOptions.push(i);
     }
-    console.log(availableQuestions)
+    // create options in html
+    for(let i=0; i<optionLen; i++){
+        // Random question
+        const optionIndex = availableOptions[Math.floor(Math.random() * availableOptions.length)];
+            //  get the position of 'optionIndex' from the availableOptions 
+        const index2 = availableOptions.indexOf(optionIndex);
+            //  remove the 'optionIndex' from the availableOptions, so that the option does not repeat 
+        availableOptions.splice(index2, 1);
+          console.log(optionIndex)
+        const option = document.createElement("div");
+        option.innerHTML = currentQuestion.options[optionIndex];
+        option.id = optionIndex;
+        option.className = "option";
+        optionContainer.appendChild(option);
+    }
+
     questionCounter++;
 }
 function next(){
