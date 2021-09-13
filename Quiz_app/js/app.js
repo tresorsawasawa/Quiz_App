@@ -8,6 +8,7 @@ const questionNumber = document.querySelector(".question-number"),
 let questionCounter = 0,
     currentQuestion,
     availableQuestions = [];
+    availableOptions = [];
 
     // Push the question into availableQuestions array
 function setAvailableQuestions(){
@@ -27,11 +28,17 @@ function getNewQuestion(){
     questionText.innerHTML = currentQuestion.q;
 
     // Get the index of "questionIndex" from the availableQuestions array
-
     const index1 = availableQuestions.indexOf(questionIndex);
     // Remove the questionIndex from the availableQuestions array
     availableQuestions.splice(index1, 1);
-    
+
+    // Set functions
+    // get the length of options
+    const optionLen = currentQuestion.options.length
+    for(let i = 0; i<optionLen; i++){
+        availableQuestions.push(i);
+    }
+    console.log(availableQuestions)
     questionCounter++;
 }
 function next(){
@@ -49,5 +56,3 @@ window.onload = function(){
     // Second we will call getNewQuestion() function
     getNewQuestion();
 }
-
-// console.log(quiz[4])
