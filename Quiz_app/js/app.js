@@ -23,7 +23,18 @@ function getNewQuestion(){
     // Set  question options
     // Get Random question
     const questionIndex = availableQuestions[Math.floor(Math.random() * availableQuestions.length)]
-    
+    currentQuestion = questionIndex;
+    questionText.innerHTML = currentQuestion.q;
+    console.log(questionIndex)
+    questionCounter++;
+}
+function next(){
+    if(questionCounter === quiz.length){
+        console.log("Quiz over");
+    }
+    else{
+        getNewQuestion();
+    }
 }
 
 window.onload = function(){
