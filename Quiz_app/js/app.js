@@ -25,7 +25,13 @@ function getNewQuestion(){
     const questionIndex = availableQuestions[Math.floor(Math.random() * availableQuestions.length)]
     currentQuestion = questionIndex;
     questionText.innerHTML = currentQuestion.q;
-    console.log(questionIndex)
+
+    // Get the index of "questionIndex" from the availableQuestions array
+
+    const index1 = availableQuestions.indexOf(questionIndex);
+    // Remove the questionIndex from the availableQuestions array
+    availableQuestions.splice(index1, 1);
+    
     questionCounter++;
 }
 function next(){
