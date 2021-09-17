@@ -4,7 +4,10 @@
 const questionNumber = document.querySelector(".question-number"),
       questionText = document.querySelector(".question-text"),
       optionContainer = document.querySelector(".option-container"),
-      answersIndicatorContainer = document.querySelector(".answers-indicator");
+      answersIndicatorContainer = document.querySelector(".answers-indicator"),
+      homeBox = document.querySelector(".home-box"),
+      quizBox = document.querySelector(".quiz-box"),
+      resultBox = document.querySelector(".result-box");
 
 let questionCounter = 0,
     currentQuestion,
@@ -62,7 +65,6 @@ function getNewQuestion(){
         optionContainer.appendChild(option);
         option.setAttribute("onclick", "getResult(this)");
     }
-
     questionCounter++;
 }
 // get the result of current attempt question
@@ -75,10 +77,11 @@ function getResult(element){
         // add the indicator to the correct mark
         updateAnswerIndicator("correct");
         correctAnswers++;
+        console.log("correct: "+ correctAnswers)
     }
     else{
         // set the green color to the correct option
-        element.classList.add("wrong") 
+         element.classList.add("wrong") 
         // add the indicator to the wrong mark
         updateAnswerIndicator("wrong");
         // if the answer is incorrect the show option by adding green color the correct
@@ -113,12 +116,14 @@ function updateAnswerIndicator(markType){
 function next(){
     if(questionCounter === quiz.length){
         console.log("Quiz over")
+        quizOver();
     }
     else{
         getNewQuestion();
     }
 }
-
+// function quizOver(){}
+         
 window.onload = function(){
     // First we will set all questions in setAvailableQuestions array
     setAvailableQuestions();
