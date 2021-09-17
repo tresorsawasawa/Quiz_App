@@ -3,12 +3,15 @@
 
 const questionNumber = document.querySelector(".question-number"),
       questionText = document.querySelector(".question-text"),
-      optionContainer = document.querySelector(".option-container");
+      optionContainer = document.querySelector(".option-container"),
+      answersIndicatorContainer = document.querySelector(".answers-indicator");
 
 let questionCounter = 0,
     currentQuestion,
     availableQuestions = [],
-    availableOptions = [];
+    availableOptions = [],
+    correctAnswers = 0,
+    attempt = 0;
 
     // Push the question into availableQuestions array
 function setAvailableQuestions(){
@@ -68,12 +71,16 @@ function getResult(element){
     // get answer by comparing the id of the clicked option
     if(id === currentQuestion.answer){
         // set the green color to the correct option
-        element.classList.add("correct")
+        element.classList.add("correct");
+        // add the indicator to the correct mark
+        updateAnswerIndicator("correct");
+        correctAnswers++;
     }
     else{
         // set the green color to the correct option
         element.classList.add("wrong") 
-        
+        // add the indicator to the wrong mark
+        updateAnswerIndicator("wrong");
         // if the answer is incorrect the show option by adding green color the correct
         const optionLen = optionContainer.children.length;
         for(let i=0; i<optionLen; i++){
@@ -82,6 +89,7 @@ function getResult(element){
             }
         }
     }
+    attempt++;
     unclickableOptions()
 }
 // make all options unclickable once th user select an option(RESTRICT THE USER TO CHANGE OPTION AGAIN)
@@ -91,10 +99,20 @@ function unclickableOptions(){
         optionContainer.children[i].classList.add("already-answered")
     }
 }
+function answersIndicator(){
+    const totalQuestion = quiz.length;
+    for(let i=0; i<totalQuestion; i++){
+        const indicator = document.createElement("div");
+        answersIndicatorContainer.appendChild(indicator);
+    }
+}
+function updateAnswerIndicator(markType){
+    answersIndicatorContainer.children[questionCounter - 1].classList.add(markType);
 
+} 
 function next(){
     if(questionCounter === quiz.length){
-        console.log("Quiz over");
+        console.log("Quiz over")
     }
     else{
         getNewQuestion();
@@ -106,4 +124,6 @@ window.onload = function(){
     setAvailableQuestions();
     // Second we will call getNewQuestion() function
     getNewQuestion();
+    // To create indicators of answers
+    answersIndicator();
 }
