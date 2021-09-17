@@ -71,7 +71,16 @@ function getResult(element){
         element.classList.add("correct")
     }
     else{
-        element.classList.add("wrong")    
+        // set the green color to the correct option
+        element.classList.add("wrong") 
+        
+        // if the answer is incorrect the show option by adding green color the correct
+        const optionLen = optionContainer.children.length;
+        for(let i=0; i<optionLen; i++){
+            if(parseInt(optionContainer.children[i].id) === currentQuestion.answer){
+                optionContainer.children[i].classList.add("correct");
+            }
+        }
     }
     unclickableOptions()
 }
