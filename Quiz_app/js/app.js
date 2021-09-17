@@ -34,10 +34,13 @@ function getNewQuestion(){
 
     // Set functions
     // get the length of options
-    const optionLen = currentQuestion.options.length
+    const optionLen = currentQuestion.options.length;
     for(let i = 0; i<optionLen; i++){
         availableOptions.push(i);
     }
+
+    let animationDelay = 0.15;
+
     // create options in html
     for(let i=0; i<optionLen; i++){
         // Random question
@@ -46,16 +49,32 @@ function getNewQuestion(){
         const index2 = availableOptions.indexOf(optionIndex);
             //  remove the 'optionIndex' from the availableOptions, so that the option does not repeat 
         availableOptions.splice(index2, 1);
-          console.log(optionIndex)
         const option = document.createElement("div");
         option.innerHTML = currentQuestion.options[optionIndex];
         option.id = optionIndex;
+        option.style.animationDelay = animationDelay + 's';
+        animationDelay = animationDelay + 0.15;
         option.className = "option";
         optionContainer.appendChild(option);
+        option.setAttribute("onclick", "getResult(this)");
     }
 
     questionCounter++;
 }
+// get the result of current attempt question
+function getResult(element){
+    const id = parseInt(element.id);
+    // get answer by comparing the id of the clicked option
+    if(id === currentQuestion.answer){
+        // set the green color to the correct option
+        element.classList.add("correct")
+    }
+    else{
+        console.log("answer is wrong");
+
+    }
+}
+
 function next(){
     if(questionCounter === quiz.length){
         console.log("Quiz over");
