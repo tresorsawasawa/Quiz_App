@@ -39,6 +39,7 @@ function getNewQuestion(){
         availableOptions.push(i);
     }
 
+    optionContainer.innerHTML = "";
     let animationDelay = 0.15;
 
     // create options in html
@@ -70,8 +71,15 @@ function getResult(element){
         element.classList.add("correct")
     }
     else{
-        console.log("answer is wrong");
-
+        element.classList.add("wrong")    
+    }
+    unclickableOptions()
+}
+// make all options unclickable once th user select an option(RESTRICT THE USER TO CHANGE OPTION AGAIN)
+function unclickableOptions(){
+    const optionLen = optionContainer.children.length;
+    for(let i=0; i<optionLen; i++){
+        optionContainer.children[i].classList.add("already-answered")
     }
 }
 
