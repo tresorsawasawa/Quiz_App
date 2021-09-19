@@ -69,6 +69,7 @@ function getNewQuestion(){
 }
 // get the result of current attempt question
 function getResult(element){
+    
     const id = parseInt(element.id);
     // get answer by comparing the id of the clicked option
     if(id === currentQuestion.answer){
@@ -77,7 +78,7 @@ function getResult(element){
         // add the indicator to the correct mark
         updateAnswerIndicator("correct");
         correctAnswers++;
-        console.log("correct: "+ correctAnswers)
+        console.log("correct: "+ correctAnswers);
     }
     else{
         // set the green color to the correct option
